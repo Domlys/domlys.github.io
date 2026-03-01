@@ -1,57 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="./resources/css/index.css" type="text/css" rel="stylesheet">
-        <title>#####</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dom Evans — Civil servant, aspiring developer and AI engineer. Building automation and AI tools in UK government.">
+    <title>Dom Evans</title>
 
-    <body>
-        <header id="banner" role="banner">
-            <div id="navigation">
-            <nav role="navigation">
-                <ul>
-                    <!--Remember to add links once other pages are developed-->
-                    <li><a href="#" title="###">###</a></li>
-                    <li><a href="#" title="###">###</a></li>
-                    <li><a href="#" title="###">###</a></li>
-                </ul>
-            </nav>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==========================================
+         NAVIGATION
+         ========================================== -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">DE</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certs</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section id="hero">
+        <!-- Animated particle canvas — controlled in script.js -->
+        <canvas id="particleCanvas"></canvas>
+
+        <div class="hero-content">
+            <p class="hero-greeting">Hi, I'm</p>
+            <h1 class="hero-name">Dom Evans</h1>
+            <!-- Typing animation — strings are set in script.js -->
+            <div class="hero-headline">
+                <span id="typed-text"></span><span class="cursor">|</span>
             </div>
-        </header>
-
-        <main>
-            <h1>#####</h1>
-            <div class="LibraryContainer">
-                <div class="row" id="row1">
-                    <div>1a</div>
-                    <div>2a</div>
-                    <div>3a</div>
-                </div>
-                <div class="row" id="row2">
-                    <div>1b</div>
-                    <div>2b</div>
-                    <div>3b</div>
-                </div>
-                <div class="row" id="row3">
-                    <div>1c</div>
-                    <div>2c</div>
-                    <div>3c</div>
-                </div>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
             </div>
-        </main>
+        </div>
 
-        <footer role="banner">
-            <p>####</p>
-            <nav id="navigation2" role="navigation">
-                <ul>
-                    <!--Remember to add links once other pages are developed-->
-                    <li><a href="#" title="###">###</a></li>
-                    <li><a href="#" title="###">###</a></li>
-                    <li><a href="#" title="###">###</a></li>
-                </ul>
-            </nav>
-        </footer>
-    </body>
+        <a href="#about" class="scroll-indicator" aria-label="Scroll to about section">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </a>
+    </section>
+
+
+    <!-- ==========================================
+         ABOUT SECTION
+         ========================================== -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    I'm a policy, strategy and digital transformation civil servant working in UK central government — currently leading on AI and automation at the Department for Science, Innovation and Technology (DSIT).
+                </p>
+                <p class="about-text">
+                    Alongside my day job, I build automation and AI tools as side projects, drawing on my government experience to solve real problems. I care about using technology to reduce friction, free up time, and let people focus on the work that actually matters.
+                </p>
+                <p class="about-text">
+                    My technical work is grounded in Power Platform, M365 Copilot, JavaScript, and CSS — with a growing interest in applied AI engineering.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         SKILLS SECTION
+         To add a skill: copy a <span class="skill-pill"> line
+         and update the text inside it.
+         ========================================== -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-pill">Power Platform</span>
+                <span class="skill-pill">Power Automate</span>
+                <span class="skill-pill">M365 Copilot</span>
+                <span class="skill-pill">Copilot Studio</span>
+                <span class="skill-pill">HTML</span>
+                <span class="skill-pill">CSS</span>
+                <span class="skill-pill">JavaScript</span>
+                <span class="skill-pill">Generative AI</span>
+                <span class="skill-pill">Process Automation</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         PROJECTS SECTION
+         ==========================================
+         HOW TO ADD A NEW PROJECT CARD:
+         1. Copy a complete project card block (from the opening
+            <div class="project-card"> to its closing </div>)
+         2. Paste it before the closing </div> of .projects-grid
+         3. Update:
+            - data-status attribute: "live" | "alpha" | "coming-soon"
+            - The <span class="badge"> text and class
+              (badge-live / badge-alpha / badge-coming-soon)
+            - The <h3 class="project-title"> text
+            - The <p class="project-tools"> text
+            - The <p class="project-description"> text
+         ========================================== -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-subtitle">Things I've built</p>
+
+            <div class="projects-grid">
+
+                <!-- PROJECT CARD 1: PMQs Automation -->
+                <div class="project-card" data-status="live">
+                    <div class="card-header">
+                        <span class="badge badge-live">Live (internal)</span>
+                        <h3 class="project-title">PMQs Automation</h3>
+                        <p class="project-tools">Power Platform &middot; Power Automate</p>
+                    </div>
+                    <p class="project-description">
+                        Each week, my team spent around 4 hours on admin tasks associated with Prime Minister's Questions. I built a Power Platform flow and app that automated the entire process end-to-end — reducing the effort by 75% and freeing the team to focus on the substance of the work.
+                    </p>
+                </div>
+                <!-- END PROJECT CARD 1 -->
+
+                <!-- PROJECT CARD 2: Civil Service Pay Explorer -->
+                <div class="project-card" data-status="alpha">
+                    <div class="card-header">
+                        <span class="badge badge-alpha">Alpha</span>
+                        <h3 class="project-title">Civil Service Pay Explorer</h3>
+                        <p class="project-tools">JavaScript &middot; CSS &middot; HTML</p>
+                    </div>
+                    <p class="project-description">
+                        A web tool to help civil servants and anyone interested in public sector pay to explore salary data by department, understand pay disparities, and — in future — compare departments and analyse historical trends.
+                    </p>
+                </div>
+                <!-- END PROJECT CARD 2 -->
+
+                <!-- PROJECT CARD 3: Devolution Chatbot -->
+                <div class="project-card" data-status="coming-soon">
+                    <div class="card-header">
+                        <span class="badge badge-coming-soon">Coming Soon</span>
+                        <h3 class="project-title">Devolution Chatbot</h3>
+                        <p class="project-tools">AI &middot; TBC</p>
+                    </div>
+                    <p class="project-description">
+                        An AI-powered chatbot to help people and businesses understand how devolution in Wales affects them and their work.
+                    </p>
+                </div>
+                <!-- END PROJECT CARD 3 -->
+
+                <!--
+                    ADD NEW PROJECT CARDS HERE
+                    (copy a card block from above and paste it here)
+                -->
+
+            </div><!-- end .projects-grid -->
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         CERTIFICATIONS SECTION
+         To add a cert: copy a <div class="cert-item"> block,
+         paste it inside .cert-list, and update the text.
+         ========================================== -->
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="cert-list">
+
+                <div class="cert-item">
+                    <div class="cert-info">
+                        <span class="cert-name">Microsoft Power Up Program – Pathfinder (Power Platform)</span>
+                        <span class="cert-issuer">Microsoft</span>
+                    </div>
+                    <span class="cert-date">Aug 2025</span>
+                </div>
+
+                <div class="cert-item">
+                    <div class="cert-info">
+                        <span class="cert-name">Prosci Delivering Project Results</span>
+                        <span class="cert-issuer">Prosci</span>
+                    </div>
+                    <span class="cert-date">Mar 2025</span>
+                </div>
+
+                <div class="cert-item">
+                    <div class="cert-info">
+                        <span class="cert-name">Build a Website with HTML, CSS &amp; GitHub Pages</span>
+                        <span class="cert-issuer">Codecademy</span>
+                    </div>
+                    <span class="cert-date">May 2024</span>
+                </div>
+
+                <div class="cert-item">
+                    <div class="cert-info">
+                        <span class="cert-name">Career Essentials in Generative AI</span>
+                        <span class="cert-issuer">Microsoft &amp; LinkedIn</span>
+                    </div>
+                    <span class="cert-date">Dec 2023</span>
+                </div>
+
+                <div class="cert-item">
+                    <div class="cert-info">
+                        <span class="cert-name">Learn to Code – Fundamentals</span>
+                        <span class="cert-issuer">QA Ltd</span>
+                    </div>
+                    <span class="cert-date">Dec 2023</span>
+                </div>
+
+                <div class="cert-item">
+                    <div class="cert-info">
+                        <span class="cert-name">Create and Manage Automated Processes with Power Automate</span>
+                        <span class="cert-issuer">Microsoft</span>
+                    </div>
+                    <span class="cert-date">Nov 2023</span>
+                </div>
+
+                <!-- ADD NEW CERTIFICATIONS HERE -->
+
+            </div><!-- end .cert-list -->
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         EDUCATION SECTION
+         ========================================== -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="edu-list">
+
+                <div class="edu-item">
+                    <div class="edu-info">
+                        <h3 class="edu-degree">MScEcon Politics &amp; Public Policy</h3>
+                        <span class="edu-institution">Cardiff University</span>
+                    </div>
+                    <div class="edu-meta">
+                        <span class="edu-grade">Merit</span>
+                        <span class="edu-years">2021–2023</span>
+                    </div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-info">
+                        <h3 class="edu-degree">BSc Early Years Development &amp; Education</h3>
+                        <span class="edu-institution">University of South Wales</span>
+                    </div>
+                    <div class="edu-meta">
+                        <span class="edu-grade">First Class Honours</span>
+                        <span class="edu-years">2014–2017</span>
+                    </div>
+                </div>
+
+            </div><!-- end .edu-list -->
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         CONTACT SECTION
+         ========================================== -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p class="contact-intro">Find me online</p>
+            <div class="contact-links">
+
+                <a href="https://github.com/domlys" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    github.com/domlys
+                </a>
+
+                <a href="https://linkedin.com/in/dominic-evans-8669b0237" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    linkedin.com/in/dominic-evans-8669b0237
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Dom Evans. Built with HTML, CSS &amp; JavaScript.</p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
 </html>

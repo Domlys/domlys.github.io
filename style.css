@@ -1,0 +1,756 @@
+/* =============================================
+   DOM EVANS — PORTFOLIO
+   style.css
+
+   TABLE OF CONTENTS
+   1.  Reset & Base
+   2.  CSS Variables
+   3.  Navigation
+   4.  Hero
+   5.  Shared Section Styles
+   6.  About
+   7.  Skills
+   8.  Projects
+   9.  Certifications
+   10. Education
+   11. Contact
+   12. Footer
+   13. Animations
+   14. Media Queries (responsive)
+   ============================================= */
+
+
+/* =============================================
+   1. RESET & BASE
+   ============================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #ffffff;
+    color: #111111;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* =============================================
+   2. CSS VARIABLES
+   Adjust colours and spacing here to restyle
+   the whole page from one place.
+   ============================================= */
+:root {
+    /* Colours — monochromatic palette */
+    --black:          #000000;
+    --near-black:     #111111;
+    --dark:           #1a1a1a;
+    --grey-dark:      #333333;
+    --grey-mid:       #666666;
+    --grey-light:     #999999;
+    --grey-border:    #e4e4e4;
+    --off-white:      #f7f7f7;
+    --white:          #ffffff;
+
+    /* Typography scale */
+    --font-xs:   0.75rem;    /*  12px */
+    --font-sm:   0.875rem;   /*  14px */
+    --font-base: 1rem;       /*  16px */
+    --font-lg:   1.125rem;   /*  18px */
+    --font-xl:   1.25rem;    /*  20px */
+    --font-2xl:  1.5rem;     /*  24px */
+    --font-3xl:  2rem;       /*  32px */
+
+    /* Spacing */
+    --space-xs:  0.5rem;
+    --space-sm:  1rem;
+    --space-md:  1.5rem;
+    --space-lg:  2rem;
+    --space-xl:  3rem;
+    --space-2xl: 5rem;
+    --space-3xl: 8rem;
+
+    /* Borders */
+    --radius-sm:   4px;
+    --radius-md:   10px;
+    --radius-full: 9999px;
+
+    /* Motion */
+    --transition:      0.2s ease;
+    --transition-slow: 0.4s ease;
+
+    /* Layout */
+    --max-width:  1100px;
+    --nav-height: 64px;
+}
+
+
+/* =============================================
+   3. NAVIGATION
+   ============================================= */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    background: transparent;
+    transition: background var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+/* Class added by JS when user scrolls down */
+#navbar.scrolled {
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-size: var(--font-xl);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.06em;
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--space-lg);
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--font-sm);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--white);
+}
+
+/* Hamburger button — shown on mobile only */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-xs);
+    z-index: 101;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: var(--transition);
+}
+
+
+/* =============================================
+   4. HERO
+   ============================================= */
+#hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Canvas fills the hero and sits behind content */
+#particleCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: var(--space-lg);
+}
+
+.hero-greeting {
+    font-size: var(--font-lg);
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-xs);
+}
+
+.hero-name {
+    font-size: clamp(3.5rem, 9vw, 6.5rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: var(--space-md);
+}
+
+.hero-headline {
+    font-size: clamp(1rem, 2.5vw, 1.375rem);
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+    min-height: 2em;
+    margin-bottom: var(--space-xl);
+}
+
+/* Blinking cursor in the typing animation */
+.cursor {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.6);
+    animation: blink 1s step-end infinite;
+}
+
+.hero-cta {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-sm);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--white);
+    color: var(--black);
+}
+
+.btn-primary:hover {
+    background: #e8e8e8;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary:hover {
+    border-color: var(--white);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Animated arrow at the bottom of the hero */
+.scroll-indicator {
+    position: absolute;
+    bottom: var(--space-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.35);
+    animation: bounce 2.2s ease-in-out infinite;
+    z-index: 1;
+    transition: color var(--transition);
+}
+
+.scroll-indicator:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* =============================================
+   5. SHARED SECTION STYLES
+   ============================================= */
+section {
+    padding: var(--space-3xl) 0;
+}
+
+/* Alternate section backgrounds for visual rhythm */
+section:nth-child(even) {
+    background: var(--off-white);
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+/* Section heading with underline accent */
+.section-title {
+    font-size: var(--font-3xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-xl);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background: var(--black);
+    margin-top: 0.75rem;
+}
+
+.section-subtitle {
+    color: var(--grey-mid);
+    font-size: var(--font-lg);
+    margin-top: calc(-1 * var(--space-md));
+    margin-bottom: var(--space-xl);
+}
+
+
+/* =============================================
+   6. ABOUT
+   ============================================= */
+.about-content {
+    max-width: 700px;
+}
+
+.about-text {
+    font-size: var(--font-lg);
+    color: var(--grey-dark);
+    line-height: 1.85;
+    margin-bottom: var(--space-md);
+}
+
+.about-text:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =============================================
+   7. SKILLS
+   To add a skill: copy a <span class="skill-pill">
+   line in index.html and update the text.
+   ============================================= */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.skill-pill {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    border: 1.5px solid var(--grey-border);
+    border-radius: var(--radius-full);
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--grey-dark);
+    background: var(--white);
+    cursor: default;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.skill-pill:hover {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+}
+
+
+/* =============================================
+   8. PROJECTS
+   See comments in index.html for how to add
+   new project cards.
+   ============================================= */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+.project-card {
+    border: 1px solid var(--grey-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.project-title {
+    font-size: var(--font-xl);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.project-tools {
+    font-size: var(--font-xs);
+    color: var(--grey-light);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-weight: 500;
+}
+
+.project-description {
+    font-size: var(--font-base);
+    color: var(--grey-mid);
+    line-height: 1.75;
+    flex: 1;
+}
+
+/* ---- Status Badges ----
+   Add a badge by giving a <span> the class "badge"
+   plus one of the modifier classes below.
+   ----------------------- */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-full);
+    font-size: var(--font-xs);
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+/* Live: solid black — project is deployed */
+.badge-live {
+    background: var(--black);
+    color: var(--white);
+}
+
+/* Alpha: dark grey — work in progress */
+.badge-alpha {
+    background: var(--grey-dark);
+    color: var(--white);
+}
+
+/* Coming Soon: outlined — planned */
+.badge-coming-soon {
+    background: transparent;
+    color: var(--grey-light);
+    border: 1.5px solid var(--grey-border);
+}
+
+
+/* =============================================
+   9. CERTIFICATIONS
+   To add a cert: copy a <div class="cert-item">
+   block inside .cert-list and update the text.
+   ============================================= */
+.cert-list {
+    border-top: 1px solid var(--grey-border);
+}
+
+.cert-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--grey-border);
+    transition: padding-left var(--transition);
+}
+
+.cert-item:hover {
+    padding-left: var(--space-xs);
+}
+
+.cert-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.cert-name {
+    font-size: var(--font-base);
+    font-weight: 500;
+    color: var(--near-black);
+}
+
+.cert-issuer {
+    font-size: var(--font-sm);
+    color: var(--grey-light);
+}
+
+.cert-date {
+    font-size: var(--font-sm);
+    color: var(--grey-light);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+/* =============================================
+   10. EDUCATION
+   ============================================= */
+.edu-list {
+    border-top: 1px solid var(--grey-border);
+}
+
+.edu-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--grey-border);
+}
+
+.edu-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.edu-degree {
+    font-size: var(--font-lg);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.edu-institution {
+    font-size: var(--font-base);
+    color: var(--grey-mid);
+}
+
+.edu-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.edu-grade {
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: var(--near-black);
+}
+
+.edu-years {
+    font-size: var(--font-sm);
+    color: var(--grey-light);
+}
+
+
+/* =============================================
+   11. CONTACT
+   ============================================= */
+#contact {
+    background: var(--black);
+    color: var(--white);
+}
+
+#contact .section-title {
+    color: var(--white);
+}
+
+#contact .section-title::after {
+    background: var(--white);
+}
+
+.contact-intro {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: var(--font-lg);
+    margin-top: calc(-1 * var(--space-md));
+    margin-bottom: var(--space-xl);
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: rgba(255, 255, 255, 0.65);
+    font-size: var(--font-lg);
+    font-weight: 400;
+    transition: color var(--transition);
+}
+
+.contact-link:hover {
+    color: var(--white);
+}
+
+.contact-link .icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+
+/* =============================================
+   12. FOOTER
+   ============================================= */
+footer {
+    background: var(--near-black);
+    padding: var(--space-lg) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: var(--font-sm);
+    text-align: center;
+}
+
+
+/* =============================================
+   13. ANIMATIONS
+   ============================================= */
+
+/* Blinking cursor in hero */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* Bounce on scroll arrow */
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0);   }
+    50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Fade-up on scroll — applied by JS to content elements */
+.fade-in {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =============================================
+   14. MEDIA QUERIES
+   ============================================= */
+
+/* ---- Tablet (≤ 768px) ---- */
+@media (max-width: 768px) {
+    :root {
+        --space-3xl: 5rem;
+    }
+
+    /* Mobile nav: full-screen overlay */
+    .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: var(--black);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xl);
+        z-index: 99;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        font-size: var(--font-2xl);
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    /* Stack project cards */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Certs: stack label + date */
+    .cert-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs);
+    }
+
+    /* Education: stack degree + meta */
+    .edu-item {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .edu-meta {
+        align-items: flex-start;
+    }
+}
+
+/* ---- Mobile (≤ 480px) ---- */
+@media (max-width: 480px) {
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+        max-width: 260px;
+    }
+
+    .contact-link {
+        font-size: var(--font-base);
+    }
+}
